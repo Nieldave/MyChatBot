@@ -2,7 +2,7 @@ import axios from 'axios';
 import { auth } from './firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const API_URL = import.meta.env.VITE_API_URL || 'https://chatbot-platform-api.onrender.com/';
 
 // --------------------
 // AXIOS INSTANCE
