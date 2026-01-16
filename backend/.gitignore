@@ -1,0 +1,22 @@
+# Python Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment Variables
+.env
+
+# Sensitive Credentials
+firebase_key.json
+
+# Virtual Environments (Common names, just in case)
+venv/
+env/
+.venv/
+
+# PyCharm / VS Code settings (Optional but recommended)
+.idea/
+.vscode/
+
+# Logs
+*.log
