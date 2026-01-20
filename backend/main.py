@@ -24,16 +24,16 @@ def serialize_timestamp(timestamp):
 
 app = FastAPI(title="Chatbot Platform API")
 
-# CORS - Allow frontend to connect
+# CORS allow frontend to connect
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production: specify your frontend domain
+    allow_origins=["*"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# ==================== AUTHENTICATION ====================
+# AUTHENTICATION 
 
 def verify_token(authorization: str = Header(...)) -> str:
     """Verify Firebase ID token and return user ID"""
@@ -127,7 +127,7 @@ async def get_current_user(user_id: str = Depends(verify_token)):
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-# ==================== PROJECTS/AGENTS ====================
+# PROJECTS/AGENTS 
 
 @app.post("/api/projects")
 async def create_project(project: ProjectCreate, user_id: str = Depends(verify_token)):
@@ -247,7 +247,7 @@ async def delete_project(project_id: str, user_id: str = Depends(verify_token)):
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-# ==================== CHAT ====================
+# CHAT
 
 async def call_openrouter_llm(messages: List[dict]) -> str:
     """Call OpenRouter API for LLM completion"""
@@ -379,7 +379,7 @@ async def get_chat_history(project_id: str, user_id: str = Depends(verify_token)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-# ==================== FILE UPLOAD (BONUS) ====================
+# FILE UPLOAD (BONUS)
 
 @app.post("/api/projects/{project_id}/files")
 async def upload_file(
@@ -515,7 +515,7 @@ async def delete_file(
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to delete file: {str(e)}")
 
-# ==================== HEALTH CHECK ====================
+# HEALTH CHECK
 
 @app.get("/")
 async def root():
